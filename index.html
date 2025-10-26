@@ -3,469 +3,363 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Venta de Cafe Medicinal</title>
+<title>Venta de Café Medicinal</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --color-cafe: #6f4e37;
-    --color-crema: #fdfaf6;
-    --verde: #25D366; /* Verde de WhatsApp */
-    --rojo: #c00;
-    --sombra: 0 4px 12px rgba(0,0,0,.12);
-  }
-  * { box-sizing:border-box; }
-  
-  body {
-    margin:0;
-    font-family:'Poppins', sans-serif;
-    background: var(--color-crema);
-    margin-bottom: 100px; /* Espacio para el botón flotante */
-  }
-  
-  /* Encabezado */
-  header {
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,.1);
-    text-align:center;
-    padding: 20px 15px;
-  }
-  header h1 {
-    font-family: 'Playfair Display', serif;
-    color: var(--color-cafe);
-    font-size: 2.5rem;
-    margin: 0;
-  }
-  header p {
-    margin: 0;
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  /* Contenedor de Productos */
-  #productos {
-    display:flex;
-    flex-wrap:wrap;
-    gap: 25px;
-    justify-content:center;
-    padding: 30px 15px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-  
-  /* Tarjeta de Producto */
-  .card {
-    width: 280px;
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: var(--sombra);
-    overflow: hidden;
-    text-align: center;
-    transition: .25s transform, .25s box-shadow;
-    display: flex;
-    flex-direction: column; /* Organiza la tarjeta verticalmente */
-  }
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,.15);
-  }
-  
-  .card img {
-    width: 100%;
-    height: 220px;
-    object-fit: contain;
-    background: #fff;
-    padding: 10px;
-  }
-  
-  .card .nombre {
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: var(--color-cafe);
-    margin: 15px 10px 5px;
-    flex-grow: 1; /* Empuja el precio/botón hacia abajo */
-  }
-  
-  .card .precio {
-    font-weight: 700;
-    color: #333;
-    font-size: 1.25rem;
-    margin: 0 0 15px;
-  }
-  
-  /* Botón de Añadir al carrito en la tarjeta */
-  .btn {
-    display:inline-block;
-    background:var(--verde);
-    color:#fff;
-    text-decoration:none;
-    padding:10px 15px;
-    border-radius:12px;
-    margin: 0 15px 15px; /* Margen inferior */
-    font-weight:600;
-    border:none;
-    font-family:'Poppins',sans-serif;
-    font-size:1rem;
-    cursor:pointer;
-  }
-  .btn:hover{ filter:brightness(.95); }
-  
-  /* Pie de Página */
-  footer {
-    text-align: center;
-    color: #555;
-    font-size: .9rem;
-    padding: 20px;
-    margin-top: 20px;
-    background: #f1f1f1;
-  }
+  :root{
+    --color-cafe:#6f4e37;
+    --color-crema:#fdfaf6;
+    --verde:#25D366; /* WhatsApp */
+    --rojo:#c00;
+    --sombra:0 4px 12px rgba(0,0,0,.12);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    background:var(--color-crema);
+    margin-bottom:100px; /* espacio para el botón flotante */
+  }
 
-  /* =================================================================
-   * INICIO: NUEVO CSS PARA EL CARRITO
-   * ================================================================= */
+  /* Encabezado */
+  header{
+    background:#fff;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+    text-align:center;
+    padding:20px 15px;
+  }
+  header h1{
+    font-family:'Playfair Display',serif;
+    color:var(--color-cafe);
+    font-size:2.5rem;
+    margin:0;
+  }
+  header p{
+    margin:0;
+    font-size:1rem;
+    color:#333;
+  }
 
-  /* Botón flotante */
-  #btn-flotante-carrito {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--verde);
-    color: white;
-    padding: 12px 18px;
-    border-radius: 50px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    z-index: 999;
-    border: none;
-    display: none; /* Oculto hasta que se añada algo */
-  }
+  /* Contenedor de productos */
+  #productos{
+    display:flex;
+    flex-wrap:wrap;
+    gap:25px;
+    justify-content:center;
+    padding:30px 15px;
+    max-width:1000px;
+    margin:0 auto;
+  }
 
-  /* Modal (Fondo oscuro) */
-  #modal-carrito {
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0,0,0,0.6);
-  }
+  /* Tarjeta */
+  .card{
+    width:280px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:var(--sombra);
+    overflow:hidden;
+    text-align:center;
+    transition:.25s transform,.25s box-shadow;
+    display:flex;
+    flex-direction:column;
+  }
+  .card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,.15);
+  }
+  .card img{
+    width:100%;
+    height:220px;
+    object-fit:contain;
+    background:#fff;
+    padding:10px;
+  }
+  .card .nombre{
+    font-weight:600;
+    font-size:1.2rem;
+    color:var(--color-cafe);
+    margin:15px 10px 5px;
+    flex-grow:1;
+  }
+  .card .precio{
+    font-weight:700;
+    color:#333;
+    font-size:1.25rem;
+    margin:0 0 15px;
+  }
+  .btn{
+    display:inline-block;
+    background:var(--verde);
+    color:#fff;
+    text-decoration:none;
+    padding:10px 15px;
+    border-radius:12px;
+    margin:0 15px 15px;
+    font-weight:600;
+    border:none;
+    font-family:'Poppins',sans-serif;
+    font-size:1rem;
+    cursor:pointer;
+  }
+  .btn:hover{filter:brightness(.95);}
 
-  /* Contenido del Modal (Caja blanca) */
-  .modal-contenido {
-    background-color: #fefefe;
-    margin: 15% auto; 
-    padding: 24px;
-    border: 1px solid #888;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-  }
+  /* Footer */
+  footer{
+    text-align:center;
+    color:#555;
+    font-size:.9rem;
+    padding:20px;
+    margin-top:20px;
+    background:#f1f1f1;
+  }
 
-  .modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
-  }
-  .modal-header h2 {
-    margin: 0;
-    color: var(--color-cafe);
-  }
-  .modal-cerrar {
-    color: #aaa;
-    font-size: 32px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .modal-cerrar:hover,
-  .modal-cerrar:focus {
-    color: #333;
-  }
-  
-  #cart-items {
-    list-style: none;
-    padding: 0;
-    margin-top: 15px;
-    max-height: 250px;
-    overflow-y: auto;
-  }
-  
-  /* Estilos del item en el carrito (con imagen) */
-  .cart-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 4px;
-    border-bottom: 1px solid #f0f0f0;
-    font-size: 0.95rem;
-  }
-  .cart-item-img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 8px;
-    background: #f0f0f0;
-    flex-shrink: 0;
-  }
-  .cart-item-details {
-    flex-grow: 1;
-    line-height: 1.3;
-  }
-  .cart-item-details small {
-    font-weight: 600;
-    color: #333;
-  }
-  .cart-item button {
-    background: none;
-    border: none;
-    color: var(--rojo);
-    font-size: 1.2rem;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 0 5px;
-    flex-shrink: 0;
-  }
-  
-  .cart-total {
-    text-align: right;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-top: 20px;
-    color: #333;
-  }
-  
-  .cart-acciones {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  .btn-vaciar {
-    background: #aaa;
-  }
-  .btn-vaciar:hover {
-    background: #888;
-  }
-  
-  /* Quita el resplandor azul en móviles */
-  .btn:focus,
-  #btn-flotante-carrito:focus,
-  .modal-cerrar:focus {
-    outline: none;
-    box-shadow: none;
-  }
-  /* =================================================================
-   * FIN: NUEVO CSS PARA EL CARRITO
-   * ================================================================= */
+  /* ===== Carrito ===== */
+  #btn-flotante-carrito{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background-color:var(--verde);
+    color:#fff;
+    padding:12px 18px;
+    border-radius:50px;
+    box-shadow:0 4px 12px rgba(0,0,0,.2);
+    font-weight:600;
+    font-size:1rem;
+    cursor:pointer;
+    z-index:999;
+    border:none;
+    display:none; /* oculto hasta que haya productos */
+  }
+
+  #modal-carrito{
+    display:none;
+    position:fixed;
+    z-index:1000;
+    inset:0;
+    background-color:rgba(0,0,0,.6);
+  }
+  .modal-contenido{
+    background:#fefefe;
+    margin:15% auto;
+    padding:24px;
+    border:1px solid #888;
+    border-radius:12px;
+    width:90%;
+    max-width:500px;
+    box-shadow:0 5px 20px rgba(0,0,0,.3);
+  }
+  .modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #eee;
+    padding-bottom:10px;
+  }
+  .modal-header h2{margin:0;color:var(--color-cafe);}
+  .modal-cerrar{
+    color:#aaa;font-size:32px;font-weight:bold;cursor:pointer;
+  }
+  .modal-cerrar:hover,.modal-cerrar:focus{color:#333;}
+
+  #cart-items{
+    list-style:none;
+    padding:0;
+    margin-top:15px;
+    max-height:250px;
+    overflow-y:auto;
+  }
+  .cart-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:8px 4px;
+    border-bottom:1px solid #f0f0f0;
+    font-size:.95rem;
+  }
+  .cart-item-img{
+    width:50px;height:50px;object-fit:cover;border-radius:8px;background:#f0f0f0;flex-shrink:0;
+  }
+  .cart-item-details{flex-grow:1;line-height:1.3;}
+  .cart-item-details small{font-weight:600;color:#333;}
+  .cart-item button{
+    background:none;border:none;color:var(--rojo);
+    font-size:1.2rem;font-weight:bold;cursor:pointer;padding:0 5px;flex-shrink:0;
+  }
+  .cart-total{
+    text-align:right;font-size:1.3rem;font-weight:700;margin-top:20px;color:#333;
+  }
+  .cart-acciones{display:flex;justify-content:space-between;margin-top:20px;}
+  .btn-vaciar{background:#aaa;}
+  .btn-vaciar:hover{background:#888;}
+
+  .btn:focus,#btn-flotante-carrito:focus,.modal-cerrar:focus{
+    outline:none;box-shadow:none;
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Venta de Cafe Medicinal</h1>
-  <p>Productos Pioir</p>
+  <h1>Venta de Café Medicinal</h1>
+  <p>Productos Pioir</p>
 </header>
 
 <div id="productos">
+  <div class="card">
+    <img src="cafe%20clasico.jpeg" alt="GanoCafe Clásico">
+    <div class="nombre">GanoCafe Clásico</div>
+    <div class="precio">Q290.00</div>
+    <button class="btn" onclick="agregarAlCarrito('GanoCafe Clásico', 290, 'cafe%20clasico.jpeg')">Añadir al carrito</button>
+  </div>
 
-  <div class="card">
-    <img src="cafe clasico.jpeg" alt="Ganocafe Clasico">
-    <div class="nombre">GanoCafe Clasico</div>
-    <div class="precio">Q290.00</div>
-    <button class="btn" onclick="agregarAlCarrito('GanoCafe Clasico', 290, 'cafe clasico.jpeg')">
-      Añadir al carrito
-    </button>
-  </div>
-  <div class="card">
-    <img src="capuchino.jpeg" alt="GanoCafe Capuchino">
-    <div class="nombre">GanoCafe Capuchino</div>
-    <div class="precio">Q290.00</div>
-    <button class="btn" onclick="agregarAlCarrito('GanoCafe Capuchino', 290, 'capuchino.jpeg')">
-      Añadir al carrito
-    </button>
-  </div>
-  <div class="card">
-    <img src="chocolate.jpeg" alt="Gano Chocolate">
-    <div class="nombre">Gano Chocolate</div>
-    <div class="precio">Q320.00</div>
-    <button class="btn" onclick="agregarAlCarrito('Gano Chocolate', 320, 'chocolate.jpeg')">
-      Añadir al carrito
-    </button>
-  </div>
-  <div class="card">
-    <img src="pasta dental.jpeg" alt="Pasta Dental Gano Fresh">
-    <div class="nombre">Pasta Dental Gano Fresh</div>
-    <div class="precio">Q175.00</div>
-    <button class="btn" onclick="agregarAlCarrito('Pasta Dental Gano Fresh', 175, 'pasta dental.jpeg')">
-      Añadir al carrito
-    </button>
-  </div>
-  </div>
+  <div class="card">
+    <img src="capuchino.jpeg" alt="GanoCafe Capuchino">
+    <div class="nombre">GanoCafe Capuchino</div>
+    <div class="precio">Q290.00</div>
+    <button class="btn" onclick="agregarAlCarrito('GanoCafe Capuchino', 290, 'capuchino.jpeg')">Añadir al carrito</button>
+  </div>
+
+  <div class="card">
+    <img src="chocolate.jpeg" alt="Gano Chocolate">
+    <div class="nombre">Gano Chocolate</div>
+    <div class="precio">Q320.00</div>
+    <button class="btn" onclick="agregarAlCarrito('Gano Chocolate', 320, 'chocolate.jpeg')">Añadir al carrito</button>
+  </div>
+
+  <div class="card">
+    <img src="pasta%20dental.jpeg" alt="Pasta Dental Gano Fresh">
+    <div class="nombre">Pasta Dental Gano Fresh</div>
+    <div class="precio">Q175.00</div>
+    <button class="btn" onclick="agregarAlCarrito('Pasta Dental Gano Fresh', 175, 'pasta%20dental.jpeg')">Añadir al carrito</button>
+  </div>
+</div>
+
 <footer>
-  © Café Pioir 2025 - Todos los derechos reservados
+  © Café Pioir 2025 - Todos los derechos reservados
 </footer>
 
 <button id="btn-flotante-carrito" onclick="mostrarCarrito()">
-  🛒 Carrito (0) - Q0.00
+  🛒 Carrito (0) - Q0.00
 </button>
 
 <div id="modal-carrito">
-  <div class="modal-contenido">
-    
-    <div class="modal-header">
-      <h2>Mi Pedido</h2>
-      <span class="modal-cerrar" onclick="ocultarCarrito()">×</span>
-    </div>
-    
-    <ul id="cart-items">
-      <li>Aún no tienes productos.</li>
-    </ul>
-    
-    <div id="cart-total" class="cart-total">
-      Total: Q0.00
-    </div>
-    
-    <div class="cart-acciones">
-      <button class="btn btn-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
-      <button class="btn" onclick="finalizarPedido()">Finalizar Pedido (WhatsApp)</button>
-    </div>
-    
-  </div>
+  <div class="modal-contenido">
+    <div class="modal-header">
+      <h2>Mi Pedido</h2>
+      <span class="modal-cerrar" onclick="ocultarCarrito()">×</span>
+    </div>
+
+    <ul id="cart-items">
+      <li>Aún no tienes productos.</li>
+    </ul>
+
+    <div id="cart-total" class="cart-total">Total: Q0.00</div>
+
+    <div class="cart-acciones">
+      <button class="btn btn-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
+      <button class="btn" onclick="finalizarPedido()">Finalizar Pedido (WhatsApp)</button>
+    </div>
+  </div>
 </div>
+
 <script>
 /* === CONFIGURACIÓN === */
-const whatsapp = "53898423"; // <-- NÚMERO ACTUALIZADO
+const whatsapp = "50253898423"; // Guatemala (+502)
 
 /* VARIABLES GLOBALES Y ELEMENTOS DEL DOM */
-let carrito = []; 
+let carrito = [];
 let modal, btnFlotante, cartList, cartTotalEl;
 
-/* === FUNCIONES DEL MODAL === */
-function mostrarCarrito() {
-  modal.style.display = "block";
-}
-function ocultarCarrito() {
-  modal.style.display = "none";
-}
+/* === MODAL === */
+function mostrarCarrito(){ modal.style.display = "block"; }
+function ocultarCarrito(){ modal.style.display = "none"; }
 
-/* === FUNCIONES DEL CARRITO === */
-
-// Añade un producto al carrito
-function agregarAlCarrito(nombre, precio, imagenUrl) {
-  const itemExistente = carrito.find(item => item.nombre === nombre);
-  
-  if (itemExistente) {
-    itemExistente.cantidad++; 
-  } else {
-    // Añadimos el objeto con la URL de la imagen
-    carrito.push({
-      nombre: nombre,
-      precio: precio,
-      cantidad: 1,
-      imagenUrl: imagenUrl // <-- Guardamos la URL de la imagen
-    });
-  }
-  renderizarCarrito();
+/* === CARRITO === */
+function agregarAlCarrito(nombre, precio, imagenUrl){
+  const itemExistente = carrito.find(item => item.nombre === nombre);
+  if(itemExistente){
+    itemExistente.cantidad++;
+  }else{
+    carrito.push({ nombre, precio, cantidad:1, imagenUrl });
+  }
+  renderizarCarrito();
 }
-
-// Elimina un producto del carrito
-function eliminarDelCarrito(index) {
-  carrito.splice(index, 1); 
-  renderizarCarrito();
+function eliminarDelCarrito(index){
+  carrito.splice(index,1);
+  renderizarCarrito();
 }
-
-// Vacía todo el carrito
-function vaciarCarrito() {
-  carrito = [];
-  renderizarCarrito();
-  ocultarCarrito();
+function vaciarCarrito(){
+  carrito = [];
+  renderizarCarrito();
+  ocultarCarrito();
 }
+function renderizarCarrito(){
+  let total = 0;          /* <-- corregido: sin la “l” extra */
+  let totalItems = 0;
 
-// Dibuja el carrito y actualiza los totales
-function renderizarCarrito() {
-l let total = 0;
-  let totalItems = 0;
-  
-  if (carrito.length === 0) {
-    cartList.innerHTML = "<li>Aún no tienes productos.</li>";
-  } else {
-    cartList.innerHTML = ""; 
-    carrito.forEach((item, index) => {
-      const subtotal = item.precio * item.cantidad;
-      total += subtotal;
-      totalItems += item.cantidad;
-      
-      const li = document.createElement("li");
-      li.className = "cart-item";
-      
-      // Usamos item.imagenUrl directamente
-      li.innerHTML = `
-        <img src="${item.imagenUrl}" class="cart-item-img" alt="${item.nombre}" loading="lazy">
-        <div class="cart-item-details">
-          ${item.cantidad}x ${item.nombre}
-          <br>
-          <small>Q${subtotal.toFixed(2)}</small>
-        </div>
-        <button onclick="eliminarDelCarrito(${index})">×</button>
-      `;
-      cartList.appendChild(li);
-    });
-  }
-  
-  cartTotalEl.innerText = `Total: Q${total.toFixed(2)}`;
-  
-  if (totalItems > 0) {
-    btnFlotante.innerHTML = `🛒 Carrito (${totalItems}) - Q${total.toFixed(2)}`;
-    btnFlotante.style.display = "block";
-  } else {
-    btnFlotante.style.display = "none";
-  }
+  if(carrito.length === 0){
+    cartList.innerHTML = "<li>Aún no tienes productos.</li>";
+  }else{
+    cartList.innerHTML = "";
+    carrito.forEach((item, index) => {
+      const subtotal = item.precio * item.cantidad;
+      total += subtotal;
+      totalItems += item.cantidad;
+
+      const li = document.createElement("li");
+      li.className = "cart-item";
+      li.innerHTML = `
+        <img src="${item.imagenUrl}" class="cart-item-img" alt="${item.nombre}" loading="lazy">
+        <div class="cart-item-details">
+          ${item.cantidad}x ${item.nombre}<br>
+          <small>Q${subtotal.toFixed(2)}</small>
+        </div>
+        <button onclick="eliminarDelCarrito(${index})">×</button>
+      `;
+      cartList.appendChild(li);
+    });
+  }
+
+  cartTotalEl.innerText = `Total: Q${total.toFixed(2)}`;
+
+  if(totalItems > 0){
+    btnFlotante.innerHTML = `🛒 Carrito (${totalItems}) - Q${total.toFixed(2)}`;
+    btnFlotante.style.display = "block";
+  }else{
+    btnFlotante.style.display = "none";
+  }
 }
 
-// Formatea el pedido y lo envía a WhatsApp
-function finalizarPedido() {
-  if (carrito.length === 0) {
-    alert("Tu carrito está vacío.");
-    return;
-  }
-  
-  let mensaje = "Hola, quiero pedir lo siguiente de Café Pioir:\n\n";
-  let total = 0;
-  
-  carrito.forEach(item => {
-    const subtotal = item.precio * item.cantidad;
-    mensaje += `${item.cantidad}x ${item.nombre} - Q${subtotal.toFixed(2)}\n`;
-    total += subtotal;
-  });
-  
-  mensaje += `\n*Total a pagar: Q${total.toFixed(2)}*`;
-  
-  const url = `https://wa.me/${whatsapp}?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, '_blank');
+/* === WHATSAPP === */
+function finalizarPedido(){
+  if(carrito.length === 0){
+    alert("Tu carrito está vacío.");
+    return;
+  }
+  let mensaje = "Hola, quiero pedir lo siguiente de Café Pioir:\n\n";
+  let total = 0;
+  carrito.forEach(item => {
+    const subtotal = item.precio * item.cantidad;
+    mensaje += `${item.cantidad}x ${item.nombre} - Q${subtotal.toFixed(2)}\n`;
+    total += subtotal;
+  });
+  mensaje += `\n*Total a pagar: Q${total.toFixed(2)}*`;
+  const url = `https://wa.me/${whatsapp}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, "_blank");
 }
-
 
 /* === INICIALIZACIÓN === */
-// Evento que se dispara cuando el HTML está listo
 document.addEventListener("DOMContentLoaded", () => {
-  // Asigna las variables globales a los elementos del DOM
-  modal = document.getElementById("modal-carrito");
-  btnFlotante = document.getElementById("btn-flotante-carrito");
-  cartList = document.getElementById("cart-items");
-  cartTotalEl = document.getElementById("cart-total");
+  modal = document.getElementById("modal-carrito");
+  btnFlotante = document.getElementById("btn-flotante-carrito");
+  cartList = document.getElementById("cart-items");
+  cartTotalEl = document.getElementById("cart-total");
 
-  // Cierra el modal si se hace clic fuera del contenido
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      ocultarCarrito();
-    }
-  }
+  // cerrar modal al hacer clic fuera
+  window.onclick = function(e){
+    if(e.target === modal){ ocultarCarrito(); }
+  };
 });
 </script>
 </body>
