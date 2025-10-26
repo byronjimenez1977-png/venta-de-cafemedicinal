@@ -158,7 +158,7 @@
   /* Contenido del Modal (Caja blanca) */
   .modal-contenido {
     background-color: #fefefe;
-  t margin: 15% auto; 
+    margin: 15% auto; 
     padding: 24px;
     border: 1px solid #888;
     border-radius: 12px;
@@ -244,7 +244,7 @@
   .cart-acciones {
     display: flex;
     justify-content: space-between;
-all margin-top: 20px;
+    margin-top: 20px;
   }
   .btn-vaciar {
     background: #aaa;
@@ -321,7 +321,7 @@ all margin-top: 20px;
     <div class="modal-header">
       <h2>Mi Pedido</h2>
       <span class="modal-cerrar" onclick="ocultarCarrito()">×</span>
-all </div>
+    </div>
     
     <ul id="cart-items">
       <li>Aún no tienes productos.</li>
@@ -343,7 +343,7 @@ all </div>
 const whatsapp = "53898423"; // <-- NÚMERO ACTUALIZADO
 
 /* VARIABLES GLOBALES Y ELEMENTOS DEL DOM */
-let carrito = [];s
+let carrito = []; 
 let modal, btnFlotante, cartList, cartTotalEl;
 
 /* === FUNCIONES DEL MODAL === */
@@ -389,7 +389,7 @@ function vaciarCarrito() {
 
 // Dibuja el carrito y actualiza los totales
 function renderizarCarrito() {
-s let total = 0;
+l let total = 0;
   let totalItems = 0;
   
   if (carrito.length === 0) {
@@ -402,7 +402,7 @@ s let total = 0;
       totalItems += item.cantidad;
       
       const li = document.createElement("li");
-all   li.className = "cart-item";
+      li.className = "cart-item";
       
       // Usamos item.imagenUrl directamente
       li.innerHTML = `
@@ -410,7 +410,7 @@ all   li.className = "cart-item";
         <div class="cart-item-details">
           ${item.cantidad}x ${item.nombre}
           <br>
-s         <small>Q${subtotal.toFixed(2)}</small>
+          <small>Q${subtotal.toFixed(2)}</small>
         </div>
         <button onclick="eliminarDelCarrito(${index})">×</button>
       `;
@@ -424,7 +424,7 @@ s         <small>Q${subtotal.toFixed(2)}</small>
     btnFlotante.innerHTML = `🛒 Carrito (${totalItems}) - Q${total.toFixed(2)}`;
     btnFlotante.style.display = "block";
   } else {
-all btnFlotante.style.display = "none";
+    btnFlotante.style.display = "none";
   }
 }
 
@@ -436,7 +436,7 @@ function finalizarPedido() {
   }
   
   let mensaje = "Hola, quiero pedir lo siguiente de Café Pioir:\n\n";
-all let total = 0;
+  let total = 0;
   
   carrito.forEach(item => {
     const subtotal = item.precio * item.cantidad;
@@ -454,7 +454,7 @@ all let total = 0;
 /* === INICIALIZACIÓN === */
 // Evento que se dispara cuando el HTML está listo
 document.addEventListener("DOMContentLoaded", () => {
-s // Asigna las variables globales a los elementos del DOM
+  // Asigna las variables globales a los elementos del DOM
   modal = document.getElementById("modal-carrito");
   btnFlotante = document.getElementById("btn-flotante-carrito");
   cartList = document.getElementById("cart-items");
@@ -462,7 +462,7 @@ s // Asigna las variables globales a los elementos del DOM
 
   // Cierra el modal si se hace clic fuera del contenido
   window.onclick = function(event) {
-s   if (event.target == modal) {
+    if (event.target == modal) {
       ocultarCarrito();
     }
   }
