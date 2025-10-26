@@ -7,252 +7,267 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    /* Paleta profesional basada en café */
-    --cafe-900:#3b2a23;
-    --cafe-700:#5a4035;
-    --cafe-500:#7a5a4c;
-    --oro-400:#caa86b;
-    --oro-500:#b58a38;
-    --oro-600:#9a742f;
-    --crema-50:#fbf7f2;
-    --crema-100:#f3ece6;
-    --texto:#2b2b2b;
-    --ok:#25D366;   /* WhatsApp */
-    --peligro:#c0392b;
-    --sombra:0 10px 24px rgba(0,0,0,.12);
-    --radio:16px;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(180deg, var(--crema-50), #fff 40%, var(--crema-50));
-    color:var(--texto);
-    margin-bottom:100px;
-  }
+  :root{
+    /* Paleta profesional basada en café */
+    --cafe-900:#3b2a23;
+    --cafe-700:#5a4035;
+    --cafe-500:#7a5a4c;
+    --oro-400:#caa86b;
+    --oro-500:#b58a38;
+    --oro-600:#9a742f;
+    --crema-50:#fbf7f2;
+    --crema-100:#f3ece6;
+    --texto:#2b2b2b;
+    --ok:#25D366;   /* WhatsApp */
+    --peligro:#c0392b;
+    --sombra:0 10px 24px rgba(0,0,0,.12);
+    --radio:16px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    color:var(--texto);
+    margin-bottom:100px;
+    /* Fondo profesional: degradado + patrón sutil embebido */
+    background:
+      linear-gradient(180deg, var(--crema-50), #fff 40%, var(--crema-50)),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 10 10'><circle cx='1' cy='1' r='.15' fill='%23caa86b' opacity='.25'/><circle cx='5' cy='3' r='.12' fill='%235a4035' opacity='.12'/><circle cx='9' cy='2' r='.12' fill='%23caa86b' opacity='.18'/><circle cx='3' cy='7' r='.1' fill='%235a4035' opacity='.12'/></svg>");
+    background-attachment: fixed, fixed;
+    background-repeat: no-repeat, repeat;
+    background-size: 100% 100%, 140px 140px;
+  }
 
-  /* Encabezado */
-  header{
-    background:#fff;
-    border-bottom:1px solid var(--crema-100);
-    text-align:center;
-    padding:28px 16px 16px;
-    position:sticky; top:0; z-index:5;
-    backdrop-filter:saturate(120%) blur(2px);
-  }
-  header h1{
-    font-family:'Playfair Display',serif;
-    color:var(--cafe-900);
-    font-size:2.6rem; margin:0 0 6px;
-    letter-spacing:.4px;
-  }
-  header p{margin:0;color:#5b5b5b}
+  /* Encabezado */
+  header{
+    background:#fff;
+    border-bottom:1px solid var(--crema-100);
+    text-align:center;
+    padding:28px 16px 16px;
+    position:sticky; top:0; z-index:5;
+    backdrop-filter:saturate(120%) blur(2px);
+  }
+  header h1{
+    font-family:'Playfair Display',serif;
+    color:var(--cafe-900);
+    font-size:2.6rem; margin:0 0 6px;
+    letter-spacing:.4px;
+  }
+  header p{margin:0;color:#5b5b5b}
 
-  /* Grid de productos */
-  #productos{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:26px;
-    padding:32px 16px;
-    max-width:1100px;
-    margin:0 auto;
-  }
+  /* Grid de productos */
+  #productos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:26px;
+    padding:32px 16px;
+    max-width:1100px;
+    margin:0 auto;
+  }
 
-  /* Tarjeta */
-  .card{
-    background:#fff;
-    border-radius:var(--radio);
-    box-shadow:var(--sombra);
-    overflow:hidden;
-    display:flex; flex-direction:column;
-    transition:transform .2s ease, box-shadow .2s ease;
-    border:1px solid var(--crema-100);
-    position:relative;
-  }
-  .card:hover{ transform:translateY(-4px) }
+  /* Tarjeta */
+  .card{
+    background:#fff;
+    border-radius:var(--radio);
+    box-shadow:var(--sombra);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    transition:transform .2s ease, box-shadow .2s ease;
+    border:1px solid var(--crema-100);
+    position:relative;
+  }
+  .card:hover{ transform:translateY(-4px) }
 
-  .card img{
-    width:100%; height:220px; object-fit:contain;
-    background:#fff; padding:12px;
-  }
-  .nombre{
-    font-weight:700; font-size:1.15rem;
-    color:var(--cafe-900);
-    margin:6px 18px 2px;
-  }
-  .beneficios{
-    /* Estilos para la lista de beneficios */
-    margin:6px 18px 12px; padding:0 0 0 18px;
-    color:#4a4a4a; font-size:.92rem; line-height:1.45; /* Aumenté line-height */
-    flex-grow: 1; /* Hace que la lista ocupe el espacio disponible */
-  }
-  .beneficios li{margin:5px 0} /* Un poco más de espacio entre items */
-  .precio{
-    margin:12px 18px 14px; /* Ajuste de margen superior */
-    font-weight:800; color:var(--cafe-700);
-    font-size:1.12rem;
-  }
-  .btn{
-    align-self:center;
-    margin:0 18px 18px; /* Margen superior 0, ya que el precio lo maneja */
-    padding:10px 16px;
-    border-radius:12px;
-    font-weight:700;
-    border:none; cursor:pointer;
-    background:var(--cafe-700); color:#fff;
-    transition:filter .15s ease, transform .05s ease;
-  }
-  .btn:hover{ filter:brightness(1.05) }
-  .btn:active{ transform:scale(.98) }
+  .card img{
+    width:100%; height:220px; object-fit:contain;
+    background:#fff; padding:12px;
+  }
+  .nombre{
+    font-weight:700; font-size:1.15rem;
+    color:var(--cafe-900);
+    margin:6px 18px 2px;
+  }
 
-  /* --- Cinta “Más vendido” --- */
-  .badge-ribbon{
-    position:absolute;
-    top:14px; left:-48px;
-    transform:rotate(-45deg);
-    background:linear-gradient(90deg, var(--oro-600), var(--oro-400));
-    color:#fff;
-    font-weight:800;
-    letter-spacing:.3px;
-    padding:6px 64px;
-    box-shadow:0 4px 12px rgba(0,0,0,.15);
-    text-shadow:0 1px 0 rgba(0,0,0,.25);
-    font-size:.82rem;
-  }
+  /* Lista de beneficios */
+  .beneficios{
+    margin:6px 18px 12px;
+    padding-left:18px;
+    color:#4a4a4a;
+    font-size:.92rem;
+    line-height:1.45;
+    flex-grow:1;
+  }
+  .beneficios li{ margin:5px 0 }
 
-  footer{
-    text-align:center; color:#666; font-size:.9rem;
-    padding:24px 12px; background:#fff; border-top:1px solid var(--crema-100);
-    margin-top:24px;
-  }
+  .precio{
+    margin:12px 18px 14px;
+    font-weight:800; color:var(--cafe-700);
+    font-size:1.12rem;
+  }
+  .btn{
+    align-self:center;
+    margin:0 18px 18px;
+    padding:10px 16px;
+    border-radius:12px;
+    font-weight:700;
+    border:none; cursor:pointer;
+    background:var(--cafe-700); color:#fff;
+    transition:filter .15s ease, transform .05s ease;
+  }
+  .btn:hover{ filter:brightness(1.05) }
+  .btn:active{ transform:scale(.98) }
 
-  /* Carrito */
-  /* Botón flotante con degradado café–dorado */
-  #btn-flotante-carrito{
-    position:fixed; bottom:20px; right:20px;
-    background:linear-gradient(135deg, var(--cafe-700), var(--oro-500));
-    color:#fff;
-    padding:12px 18px; border-radius:50px; border:none;
-    box-shadow:0 10px 24px rgba(0,0,0,.18);
-    font-weight:800; display:none; z-index:99;
-    letter-spacing:.2px;
-  }
-  #btn-flotante-carrito:hover{
-    filter:brightness(1.06);
-  }
+  /* Cinta “Más vendido” */
+  .badge-ribbon{
+    position:absolute;
+    top:14px; left:-48px;
+    transform:rotate(-45deg);
+    background:linear-gradient(90deg, var(--oro-600), var(--oro-400));
+    color:#fff;
+    font-weight:800;
+    letter-spacing:.3px;
+    padding:6px 64px;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    text-shadow:0 1px 0 rgba(0,0,0,.25);
+    font-size:.82rem;
+  }
 
-  #modal-carrito{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:100 }
-  .modal-contenido{
-    background:#fff; margin:8% auto; width:90%; max-width:520px;
-    padding:22px; border-radius:14px; box-shadow:var(--sombra);
-  }
-  .modal-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--crema-100);padding-bottom:8px}
-  .modal-header h2{margin:0;color:var(--cafe-900)}
-  .modal-cerrar{cursor:pointer;font-size:28px;color:#999}
-  #cart-items{list-style:none;margin:14px 0 0;padding:0;max-height:260px;overflow:auto}
-  .cart-item{display:flex;gap:10px;align-items:center;border-bottom:1px solid #f1f1f1;padding:8px 0}
-  .cart-item-img{width:50px;height:50px;object-fit:cover;border-radius:8px;background:#f3f3f3}
-  .cart-item-details{flex:1}
-  .cart-item button{background:none;border:none;color:var(--peligro);font-size:18px;cursor:pointer}
-  .cart-total{text-align:right;font-weight:800;margin-top:12px}
-  .cart-acciones{display:flex;justify-content:space-between;margin-top:16px}
-  .btn-vaciar{background:#b1b1b1}
-  .btn-wa{background:var(--ok)}  /* CTA WhatsApp mantiene verde */
+  footer{
+    text-align:center; color:#666; font-size:.9rem;
+    padding:24px 12px; background:#fff; border-top:1px solid var(--crema-100);
+    margin-top:24px;
+  }
+
+  /* Carrito: botón flotante con degradado café–dorado */
+  #btn-flotante-carrito{
+    position:fixed; bottom:20px; right:20px;
+    background:linear-gradient(135deg, var(--cafe-700), var(--oro-500));
+    color:#fff;
+    padding:12px 18px; border-radius:50px; border:none;
+    box-shadow:0 10px 24px rgba(0,0,0,.18);
+    font-weight:800; display:none; z-index:99;
+    letter-spacing:.2px;
+  }
+  #btn-flotante-carrito:hover{ filter:brightness(1.06); }
+
+  /* Modal carrito */
+  #modal-carrito{ display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:100 }
+  .modal-contenido{
+    background:#fff; margin:8% auto; width:90%; max-width:520px;
+    padding:22px; border-radius:14px; box-shadow:var(--sombra);
+  }
+  .modal-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--crema-100);padding-bottom:8px}
+  .modal-header h2{margin:0;color:var(--cafe-900)}
+  .modal-cerrar{cursor:pointer;font-size:28px;color:#999}
+  #cart-items{list-style:none;margin:14px 0 0;padding:0;max-height:260px;overflow:auto}
+  .cart-item{display:flex;gap:10px;align-items:center;border-bottom:1px solid #f1f1f1;padding:8px 0}
+  .cart-item-img{width:50px;height:50px;object-fit:cover;border-radius:8px;background:#f3f3f3}
+  .cart-item-details{flex:1}
+  .cart-item button{background:none;border:none;color:var(--peligro);font-size:18px;cursor:pointer}
+  .cart-total{text-align:right;font-weight:800;margin-top:12px}
+  .cart-acciones{display:flex;justify-content:space-between;margin-top:16px}
+  .btn-vaciar{background:#b1b1b1}
+  .btn-wa{background:var(--ok)}  /* CTA WhatsApp mantiene verde */
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Venta de Café Medicinal</h1>
-  <p>Productos Pioir</p>
+  <h1>Venta de Café Medicinal</h1>
+  <p>Productos Pioir</p>
 </header>
 
 <div id="productos">
 
-    <div class="card">
-    <span class="badge-ribbon">Más vendido</span>
-    <img src="cafe%20clasico.jpeg" alt="GanoCafe Clásico">
-    <div class="nombre">GanoCafe Clásico</div>
-        <ul class="beneficios">
-      <li>Regula desórdenes metabólicos.</li>
-      <li>Alivia la migraña.</li>
-      <li>Mejora los procesos digestivos.</li>
-      <li>Ideal como pre-entreno.</li>
-      <li>Regula la resistencia a la insulina.</li>
-      <li>Apoya al sistema cardiovascular.</li>
-    </ul>
-    <div class="precio">Q290.00</div>
-    <button class="btn" onclick="agregarAlCarrito('GanoCafe Clásico', 290, 'cafe%20clasico.jpeg')">Añadir al carrito</button>
-  </div>
+  <!-- Clásico -->
+  <div class="card">
+    <span class="badge-ribbon">Más vendido</span>
+    <img src="cafe%20clasico.jpeg" alt="GanoCafe Clásico">
+    <div class="nombre">GanoCafe Clásico</div>
+    <ul class="beneficios">
+      <li>Regula desórdenes metabólicos.</li>
+      <li>Alivia la migraña.</li>
+      <li>Mejora los procesos digestivos.</li>
+      <li>Ideal como pre-entreno.</li>
+      <li>Regula la resistencia a la insulina.</li>
+      <li>Apoya al sistema cardiovascular.</li>
+    </ul>
+    <div class="precio">Q290.00</div>
+    <button class="btn" onclick="agregarAlCarrito('GanoCafe Clásico', 290, 'cafe%20clasico.jpeg')">Añadir al carrito</button>
+  </div>
 
-    <div class="card">
-    <img src="capuchino.jpeg" alt="GanoCafe Capuchino">
-    <div class="nombre">GanoCafe Capuchino</div>
-        <ul class="beneficios">
-      <li>Perfil cremoso tipo cafetería.</li>
-      <li>Con los beneficios del Ganoderma.</li>
+  <!-- Capuchino -->
+  <div class="card">
+    <img src="capuchino.jpeg" alt="GanoCafe Capuchino">
+    <div class="nombre">GanoCafe Capuchino</div>
+    <ul class="beneficios">
+      <li>Perfil cremoso tipo cafetería.</li>
+      <li>Con los beneficios del Ganoderma.</li>
       <li>Apoya al sistema inmunológico.</li>
-      <li>Mejora los procesos digestivos.</li>
-      <li>Aporta energía y vitalidad.</li>
-    </ul>
-    <div class="precio">Q290.00</div>
-    <button class="btn" onclick="agregarAlCarrito('GanoCafe Capuchino', 290, 'capuchino.jpeg')">Añadir al carrito</button>
-  </div>
+      <li>Mejora los procesos digestivos.</li>
+      <li>Aporta energía y vitalidad.</li>
+    </ul>
+    <div class="precio">Q290.00</div>
+    <button class="btn" onclick="agregarAlCarrito('GanoCafe Capuchino', 290, 'capuchino.jpeg')">Añadir al carrito</button>
+  </div>
 
-    <div class="card">
-    <img src="chocolate.jpeg" alt="Gano Chocolate">
-    <div class="nombre">Gano Chocolate</div>
-        <ul class="beneficios">
-      <li>Opción suave para niños y adultos.</li>
-      <li>Refuerza el sistema inmunológico.</li>
-      <li>Rico en antioxidantes.</li>
+  <!-- Chocolate -->
+  <div class="card">
+    <img src="chocolate.jpeg" alt="Gano Chocolate">
+    <div class="nombre">Gano Chocolate</div>
+    <ul class="beneficios">
+      <li>Opción suave para niños y adultos.</li>
+      <li>Refuerza el sistema inmunológico.</li>
+      <li>Rico en antioxidantes.</li>
       <li>Ayuda a la oxigenación cerebral.</li>
-      <li>Delicioso tanto caliente como frío.</li>
-    </ul>
-    <div class="precio">Q320.00</div>
-    <button class="btn" onclick="agregarAlCarrito('Gano Chocolate', 320, 'chocolate.jpeg')">Añadir al carrito</button>
-  </div>
+      <li>Delicioso tanto caliente como frío.</li>
+    </ul>
+    <div class="precio">Q320.00</div>
+    <button class="btn" onclick="agregarAlCarrito('Gano Chocolate', 320, 'chocolate.jpeg')">Añadir al carrito</button>
+  </div>
 
-    <div class="card">
-    <img src="pasta%20dental.jpeg" alt="Pasta Dental Gano Fresh">
-    <div class="nombre">Pasta Dental Gano Fresh</div>
-        <ul class="beneficios">
-      <li>Ayuda a prevenir caries, placa y sarro.</li>
-      <li>Fortalece y alivia encías sensibles.</li>
-      <li>Ayuda a combatir el sangrado de encías.</li>
-      <li>Combate el mal aliento (halitosis).</li>
-      <li>Fórmula suave y refrescante sin flúor.</li>
-    </ul>
-    <div class="precio">Q175.00</div>
-    <button class="btn" onclick="agregarAlCarrito('Pasta Dental Gano Fresh', 175, 'pasta%20dental.jpeg')">Añadir al carrito</button>
-  </div>
+  <!-- Pasta dental -->
+  <div class="card">
+    <img src="pasta%20dental.jpeg" alt="Pasta Dental Gano Fresh">
+    <div class="nombre">Pasta Dental Gano Fresh</div>
+    <ul class="beneficios">
+      <li>Ayuda a prevenir caries, placa y sarro.</li>
+      <li>Fortalece y alivia encías sensibles.</li>
+      <li>Ayuda a combatir el sangrado de encías.</li>
+      <li>Combate el mal aliento (halitosis).</li>
+      <li>Fórmula suave y refrescante sin flúor.</li>
+    </ul>
+    <div class="precio">Q175.00</div>
+    <button class="btn" onclick="agregarAlCarrito('Pasta Dental Gano Fresh', 175, 'pasta%20dental.jpeg')">Añadir al carrito</button>
+  </div>
 
 </div>
 
 <footer>
-  © Café Pioir 2025 • La información es de carácter general y no sustituye consejo médico.
+  © Café Pioir 2025 • La información es de carácter general y no sustituye consejo médico.
 </footer>
 
+<!-- Botón flotante carrito -->
 <button id="btn-flotante-carrito" onclick="mostrarCarrito()">
-  🛒 Carrito (0) - Q0.00
+  🛒 Carrito (0) - Q0.00
 </button>
 
+<!-- Modal carrito -->
 <div id="modal-carrito">
-  <div class="modal-contenido">
-    <div class="modal-header">
-      <h2>Mi Pedido</h2>
-      <span class="modal-cerrar" onclick="ocultarCarrito()">×</span>
-    </div>
+  <div class="modal-contenido">
+    <div class="modal-header">
+      <h2>Mi Pedido</h2>
+      <span class="modal-cerrar" onclick="ocultarCarrito()">×</span>
+    </div>
 
-    <ul id="cart-items"><li>Aún no tienes productos.</li></ul>
-    <div id="cart-total" class="cart-total">Total: Q0.00</div>
+    <ul id="cart-items"><li>Aún no tienes productos.</li></ul>
+    <div id="cart-total" class="cart-total">Total: Q0.00</div>
 
-    <div class="cart-acciones">
-      <button class="btn btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
-      <button class="btn btn-wa" onclick="finalizarPedido()">Finalizar pedido (WhatsApp)</button>
-    </div>
-  </div>
+    <div class="cart-acciones">
+      <button class="btn btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>
+      <button class="btn btn-wa" onclick="finalizarPedido()">Finalizar pedido (WhatsApp)</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -269,61 +284,61 @@ function ocultarCarrito(){ modal.style.display="none"; }
 
 /* Carrito */
 function agregarAlCarrito(nombre, precio, imagenUrl){
-  const item = carrito.find(x => x.nombre===nombre);
-  if(item){ item.cantidad++; }
-  else{ carrito.push({nombre,precio,cantidad:1,imagenUrl}); }
-  renderizarCarrito();
+  const item = carrito.find(x => x.nombre===nombre);
+  if(item){ item.cantidad++; }
+  else{ carrito.push({nombre,precio,cantidad:1,imagenUrl}); }
+  renderizarCarrito();
 }
 function eliminarDelCarrito(i){ carrito.splice(i,1); renderizarCarrito(); }
 function vaciarCarrito(){ carrito=[]; renderizarCarrito(); ocultarCarrito(); }
 
 function renderizarCarrito(){
-  let total=0, totalItems=0;
-  if(carrito.length===0){
-    cartList.innerHTML="<li>Aún no tienes productos.</li>";
-  }else{
-    cartList.innerHTML="";
-    carrito.forEach((it,idx)=>{
-      const sub = it.precio*it.cantidad;
-      total+=sub; totalItems+=it.cantidad;
-      const li=document.createElement("li");
-      li.className="cart-item";
-      li.innerHTML=`
-        <img src="${it.imagenUrl}" class="cart-item-img" alt="${it.nombre}" loading="lazy">
-        <div class="cart-item-details">${it.cantidad}x ${it.nombre}<br><small>Q${sub.toFixed(2)}</small></div>
-        <button onclick="eliminarDelCarrito(${idx})">×</button>`;
-      cartList.appendChild(li);
-    });
-  }
-  cartTotalEl.textContent=`Total: Q${total.toFixed(2)}`;
-  if(totalItems>0){
-    btnFlotante.style.display="inline-flex";
-    btnFlotante.textContent=`🛒 Carrito (${totalItems}) - Q${total.toFixed(2)}`;
-  }else{
-    btnFlotante.style.display="none";
-  }
+  let total=0, totalItems=0;
+  if(carrito.length===0){
+    cartList.innerHTML="<li>Aún no tienes productos.</li>";
+  }else{
+    cartList.innerHTML="";
+    carrito.forEach((it,idx)=>{
+      const sub = it.precio*it.cantidad;
+      total+=sub; totalItems+=it.cantidad;
+      const li=document.createElement("li");
+      li.className="cart-item";
+      li.innerHTML=`
+        <img src="${it.imagenUrl}" class="cart-item-img" alt="${it.nombre}" loading="lazy">
+        <div class="cart-item-details">${it.cantidad}x ${it.nombre}<br><small>Q${sub.toFixed(2)}</small></div>
+        <button onclick="eliminarDelCarrito(${idx})">×</button>`;
+      cartList.appendChild(li);
+    });
+  }
+  cartTotalEl.textContent=`Total: Q${total.toFixed(2)}`;
+  if(totalItems>0){
+    btnFlotante.style.display="inline-flex";
+    btnFlotante.textContent=`🛒 Carrito (${totalItems}) - Q${total.toFixed(2)}`;
+  }else{
+    btnFlotante.style.display="none";
+  }
 }
 
 /* WhatsApp */
 function finalizarPedido(){
-  if(carrito.length===0){ alert("Tu carrito está vacío."); return; }
-  let msg="Hola, quiero pedir lo siguiente de Café Pioir:\n\n";
-  let total=0;
-  carrito.forEach(it=>{
-    const sub=it.precio*it.cantidad; total+=sub;
-    msg+=`${it.cantidad}x ${it.nombre} - Q${sub.toFixed(2)}\n`;
-  });
-  msg+=`\n*Total a pagar: Q${total.toFixed(2)}*`;
-  window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`,"_blank");
+  if(carrito.length===0){ alert("Tu carrito está vacío."); return; }
+  let msg="Hola, quiero pedir lo siguiente de Café Pioir:\n\n";
+  let total=0;
+  carrito.forEach(it=>{
+    const sub=it.precio*it.cantidad; total+=sub;
+    msg+=`${it.cantidad}x ${it.nombre} - Q${sub.toFixed(2)}\n`;
+  });
+  msg+=`\n*Total a pagar: Q${total.toFixed(2)}*`;
+  window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`,"_blank");
 }
 
 /* Init */
 document.addEventListener("DOMContentLoaded",()=>{
-  modal=document.getElementById("modal-carrito");
-  btnFlotante=document.getElementById("btn-flotante-carrito");
-  cartList=document.getElementById("cart-items");
-  cartTotalEl=document.getElementById("cart-total");
-  window.onclick=e=>{ if(e.target===modal) ocultarCarrito(); };
+  modal=document.getElementById("modal-carrito");
+  btnFlotante=document.getElementById("btn-flotante-carrito");
+  cartList=document.getElementById("cart-items");
+  cartTotalEl=document.getElementById("cart-total");
+  window.onclick=e=>{ if(e.target===modal) ocultarCarrito(); };
 });
 </script>
 </body>
